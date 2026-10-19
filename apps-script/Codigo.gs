@@ -1,7 +1,5 @@
-/**
- * Amigo Secreto & Oficina de Guirlandas — API da planilha
- * Cole este código em Extensões > Apps Script da sua planilha Google.
- */
+// Amigo Secreto & Oficina de Guirlandas - API da planilha
+// Cole este codigo em Extensoes > Apps Script da sua planilha Google.
 const ABA = 'Respostas';
 const CABECALHO = ['chave', 'Nome', 'Opção 1', 'Opção 2', 'Opção 3', 'Outra sugestão', 'Vai levar', 'Atualizado em', 'Sobre ela'];
 const COLS = CABECALHO.length;
