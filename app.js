@@ -67,7 +67,7 @@ async function sheetsApi(path, opts) {
 }
 
 /* ========= ESTADO ========= */
-const state = { nome: '', opcoes: [], desejo: '', levar: '', todas: [] };
+const state = { nome: '', sobre: '', opcoes: [], desejo: '', levar: '', todas: [] };
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -77,6 +77,7 @@ function go(id) {
   $(`#s-${id}`).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (id === 'opcoes') renderOpcoes();
+  if (id === 'sobre') $('#in-sobre').value = state.sobre;
   if (id === 'desejo') $('#in-desejo').value = state.desejo;
   if (id === 'levar') $('#in-levar').value = state.levar;
   if (id === 'mural') carregarMural();
@@ -104,17 +105,30 @@ $('#f-nome').addEventListener('submit', async (e) => {
   if (nome.length < 2) { err.textContent = 'Digite seu nome para continuar.'; return; }
   err.textContent = '';
   const btn = e.submitter || $('#f-nome .btn'); busy(btn, true);
-  state.nome = nome; state.opcoes = []; state.desejo = ''; state.levar = '';
+  state.nome = nome; state.sobre = ''; state.opcoes = []; state.desejo = ''; state.levar = '';
   try {
     const r = await api(`/api/respostas/${encodeURIComponent(nome)}`);
-    Object.assign(state, { nome: r.nome, opcoes: r.opcoes || [], desejo: r.desejo || '', levar: r.levar || '' });
+    Object.assign(state, { nome: r.nome, sobre: r.sobre || '', opcoes: r.opcoes || [], desejo: r.desejo || '', levar: r.levar || '' });
     toast(`Que bom te ver de novo, ${r.nome.split(' ')[0]}. Suas respostas foram carregadas.`);
   } catch (ex) {
     if (ex.status !== 404) { err.textContent = 'Não conseguimos conectar agora. Tente de novo.'; busy(btn, false); return; }
   }
   try { await api('/api/respostas', { method: 'POST', body: JSON.stringify({ nome: state.nome }) }); } catch {}
   busy(btn, false);
-  go('opcoes');
+  go('sobre');
+});
+
+/* ========= TELA: SOBRE ========= */
+$('#in-sobre').addEventListener('input', () => ($('#err-sobre').textContent = ''));
+$('#b-sobre').addEventListener('click', async (e) => {
+  const btn = e.currentTarget;
+  state.sobre = $('#in-sobre').value.trim();
+  if (!state.sobre) { $('#err-sobre').textContent = 'Conte um pouquinho sobre você para continuar.'; return; }
+  $('#err-sobre').textContent = '';
+  busy(btn, true);
+  try { await api('/api/respostas', { method: 'POST', body: JSON.stringify({ nome: state.nome, sobre: state.sobre }) }); go('opcoes'); }
+  catch { $('#err-sobre').textContent = 'Não foi possível salvar. Tente novamente.'; }
+  busy(btn, false);
 });
 
 /* ========= TELA 2 ========= */
@@ -203,6 +217,7 @@ function renderMural() {
     grid.innerHTML = lista.map((r, idx) => `
       <article class="friend">
         <div class="top"><svg class="wreath mini" data-size="44" viewBox="0 0 44 44" aria-hidden="true"></svg><h3>${esc(r.nome)}</h3></div>
+        ${r.sobre ? `<p class="k">Sobre ela</p><p class="about">${esc(r.sobre)}</p>` : ''}
         <p class="k">3 opções escolhidas</p>
         ${r.opcoes.length ? `<ol>${r.opcoes.map((o, i) => `<li><b>${i + 1}</b>${esc(o)}</li>`).join('')}</ol>` : '<p class="empty-txt">Ainda não escolheu.</p>'}
         <p class="k">Outra sugestão</p>
@@ -219,7 +234,7 @@ function renderMural() {
 $('#busca').addEventListener('input', renderMural);
 $('#b-refresh').addEventListener('click', carregarMural);
 $('#b-editar').addEventListener('click', () => {
-  if (state.nome) go('opcoes'); else { go('nome'); toast('Digite seu nome para editar suas respostas.'); }
+  if (state.nome) go('sobre'); else { go('nome'); toast('Digite seu nome para editar suas respostas.'); }
 });
 
 /* ========= ILUSTRAÇÕES FINE LINE ========= */
