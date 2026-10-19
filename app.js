@@ -159,7 +159,6 @@ $('#b-opcoes').addEventListener('click', async (e) => {
 $('#b-desejo').addEventListener('click', async (e) => {
   const btn = e.currentTarget;
   state.desejo = $('#in-desejo').value.trim();
-  if (!state.desejo) { $('#err-desejo').textContent = 'Escreva algo que você gostaria de ganhar.'; return; }
   $('#err-desejo').textContent = '';
   busy(btn, true);
   try { await api('/api/respostas', { method: 'POST', body: JSON.stringify({ nome: state.nome, desejo: state.desejo }) }); go('levar'); }
@@ -206,8 +205,8 @@ function renderMural() {
         <div class="top"><svg class="wreath mini" data-size="44" viewBox="0 0 44 44" aria-hidden="true"></svg><h3>${esc(r.nome)}</h3></div>
         <p class="k">3 opções escolhidas</p>
         ${r.opcoes.length ? `<ol>${r.opcoes.map((o, i) => `<li><b>${i + 1}</b>${esc(o)}</li>`).join('')}</ol>` : '<p class="empty-txt">Ainda não escolheu.</p>'}
-        <p class="k">Gostaria de ganhar</p>
-        ${r.desejo ? `<p class="wish">${esc(r.desejo)}</p>` : '<p class="empty-txt">Ainda não respondeu.</p>'}
+        <p class="k">Outra sugestão</p>
+        ${r.desejo ? `<p class="wish">${esc(r.desejo)}</p>` : `<p class="empty-txt">${r.levar ? 'Sem outras sugestões.' : 'Ainda não respondeu.'}</p>`}
         <span class="corner">${icon(CARD_ICONS[idx % CARD_ICONS.length])}</span>
         <div class="bring">${icon('mug', 'bring-ic')}<span><strong>Vai levar:</strong> ${r.levar ? esc(r.levar) : '—'}</span></div>
       </article>`).join('');
