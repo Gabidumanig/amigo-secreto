@@ -35,18 +35,35 @@
     </div>
   </section>
 
+  <!-- TELA: SOBRE VOCÊ -->
+  <section class="screen" id="s-sobre" aria-labelledby="t-sobre">
+    <div class="card">
+      <div class="steps" aria-label="Etapa 1 de 4"><i class="on"></i><i></i><i></i><i></i></div>
+      <p class="eyebrow">Olá, <span class="who"></span></p>
+      <h2 id="t-sobre">Conte um pouco sobre você</h2>
+      <p class="lead">Quais trilhas já fez, quantos anos tem, com o que trabalha, quais seus hobbies…</p>
+      <label for="in-sobre" class="sr">Sobre você</label>
+      <textarea id="in-sobre" class="input area" rows="6" maxlength="800" placeholder="Ex.: Tenho 29 anos, trabalho com supply chain, já fiz a travessia da Serra Fina e amo acampar…"></textarea>
+      <p class="error" id="err-sobre" role="alert"></p>
+      <div class="actions">
+        <button class="btn ghost" type="button" data-go="nome">← Voltar</button>
+        <button class="btn" type="button" id="b-sobre">Continuar <span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </section>
+
   <!-- TELA 2: OPÇÕES -->
   <section class="screen" id="s-opcoes" aria-labelledby="t-opcoes">
     <div class="card">
-      <div class="steps" aria-label="Etapa 1 de 3"><i class="on"></i><i></i><i></i></div>
-      <p class="eyebrow">Olá, <span class="who"></span></p>
+      <div class="steps" aria-label="Etapa 2 de 4"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+      <p class="eyebrow">Agora, os presentes</p>
       <h2 id="t-opcoes">Escolha 3 sugestões de presente de até 100 reais que gostaria de ganhar</h2>
       <p class="lead">Marque exatamente três itens que você adoraria ganhar.</p>
       <div class="counter"><strong id="count">0</strong> de 3 escolhidas</div>
       <div id="opcoes" class="options" role="group" aria-labelledby="t-opcoes"></div>
       <p class="error" id="err-opcoes" role="alert"></p>
       <div class="actions">
-        <button class="btn ghost" type="button" data-go="nome">← Voltar</button>
+        <button class="btn ghost" type="button" data-go="sobre">← Voltar</button>
         <button class="btn" type="button" id="b-opcoes">Continuar <span aria-hidden="true">→</span></button>
       </div>
     </div>
@@ -55,7 +72,7 @@
   <!-- TELA 3: DESEJO LIVRE -->
   <section class="screen" id="s-desejo" aria-labelledby="t-desejo">
     <div class="card">
-      <div class="steps" aria-label="Etapa 2 de 3"><i class="on"></i><i class="on"></i><i></i></div>
+      <div class="steps" aria-label="Etapa 3 de 4"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
       <p class="eyebrow">Quase lá, <span class="who"></span></p>
       <h2 id="t-desejo">Tem alguma outra coisa de até 100 reais que você gostaria de sugerir?</h2>
       <p class="lead">Se não tiver, deixe em branco. Pode trazer detalhes: cor favorita, tamanho, marca, loja, ou aquele mimo que você sempre quis.</p>
@@ -72,7 +89,7 @@
   <!-- TELA 4: APERITIVO -->
   <section class="screen" id="s-levar" aria-labelledby="t-levar">
     <div class="card">
-      <div class="steps" aria-label="Etapa 3 de 3"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      <div class="steps" aria-label="Etapa 4 de 4"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
       <p class="eyebrow">Para a mesa da noite</p>
       <h2 id="t-levar">Você gostaria de levar algum aperitivo ou sobremesa? Se sim, o que?</h2>
       <label for="in-levar" class="sr">O que você vai levar</label>
@@ -145,6 +162,6 @@
 
 <footer class="foot">Feito com carinho para uma noite de guirlandas, trilhas, risadas e presentes.</footer>
 <script src="./config.js?v=3"></script>
-<script src="./app.js?v=3"></script>
+<script src="./app.js?v=5"></script>
 </body>
 </html>
