@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amigo Secreto & Oficina de Guirlandas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<script>window.__API_BASE__ = '__PORT_8000__';</script>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+
+<!-- festão de folhagem no topo -->
+<div class="range" aria-hidden="true"><svg id="range-svg" viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice"></svg></div>
+<div class="garland" aria-hidden="true"><svg id="garland-svg" preserveAspectRatio="none"></svg></div>
+
+<main id="main">
+  <!-- TELA 1: NOME -->
+  <section class="screen active" id="s-nome" aria-labelledby="t-nome">
+    <div class="card card-hero">
+      <div class="wreath-holder" aria-hidden="true"><svg class="wreath" data-size="220" data-mountain="1" viewBox="0 0 220 220"></svg></div>
+      <p class="eyebrow">Noite de Natal entre amigas da trilha</p>
+      <h1 id="t-nome">Amigo Secreto<br><span>&amp; Oficina de Guirlandas</span></h1>
+      <p class="lead">Conte o que você gostaria de ganhar e o que vai trazer para a mesa. Comece pelo seu nome.</p>
+      <div class="trail-icons" aria-hidden="true"><i></i><span data-icon="tent"></span><span data-icon="compass"></span><span data-icon="pine"></span><span data-icon="boot"></span><span data-icon="mug"></span><i></i></div>
+      <form id="f-nome" class="form" autocomplete="off">
+        <label for="in-nome" class="label">Seu nome</label>
+        <input id="in-nome" name="nome" class="input" type="text" maxlength="60" placeholder="Ex.: Gabriela" required>
+        <p class="error" id="err-nome" role="alert"></p>
+        <button class="btn" type="submit">Entrar <span aria-hidden="true">→</span></button>
+      </form>
+      <button class="link" type="button" data-go="mural">Só quero ver o mural de presentes</button>
+    </div>
+  </section>
+
+  <!-- TELA 2: OPÇÕES -->
+  <section class="screen" id="s-opcoes" aria-labelledby="t-opcoes">
+    <div class="card">
+      <div class="steps" aria-label="Etapa 1 de 3"><i class="on"></i><i></i><i></i></div>
+      <p class="eyebrow">Olá, <span class="who"></span></p>
+      <h2 id="t-opcoes">Escolha 3 opções de presente</h2>
+      <p class="lead">Marque exatamente três itens que você adoraria ganhar.</p>
+      <div class="counter"><strong id="count">0</strong> de 3 escolhidas</div>
+      <div id="opcoes" class="options" role="group" aria-labelledby="t-opcoes"></div>
+      <p class="error" id="err-opcoes" role="alert"></p>
+      <div class="actions">
+        <button class="btn ghost" type="button" data-go="nome">← Voltar</button>
+        <button class="btn" type="button" id="b-opcoes">Continuar <span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELA 3: DESEJO LIVRE -->
+  <section class="screen" id="s-desejo" aria-labelledby="t-desejo">
+    <div class="card">
+      <div class="steps" aria-label="Etapa 2 de 3"><i class="on"></i><i class="on"></i><i></i></div>
+      <p class="eyebrow">Quase lá, <span class="who"></span></p>
+      <h2 id="t-desejo">O que mais você gostaria de ganhar?</h2>
+      <p class="lead">Fique à vontade: cor favorita, tamanho, marca, loja, ou aquele mimo que você sempre quis.</p>
+      <label for="in-desejo" class="sr">Seu desejo</label>
+      <textarea id="in-desejo" class="input area" rows="5" maxlength="600" placeholder="Ex.: Amo tons de verde, uso tamanho M e adoro velas aromáticas…"></textarea>
+      <p class="error" id="err-desejo" role="alert"></p>
+      <div class="actions">
+        <button class="btn ghost" type="button" data-go="opcoes">← Voltar</button>
+        <button class="btn" type="button" id="b-desejo">Continuar <span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELA 4: APERITIVO -->
+  <section class="screen" id="s-levar" aria-labelledby="t-levar">
+    <div class="card">
+      <div class="steps" aria-label="Etapa 3 de 3"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      <p class="eyebrow">Para a mesa da noite</p>
+      <h2 id="t-levar">Você gostaria de levar algum aperitivo ou sobremesa? Se sim, o que?</h2>
+      <label for="in-levar" class="sr">O que você vai levar</label>
+      <textarea id="in-levar" class="input area" rows="4" maxlength="400" placeholder="Ex.: Sim, vou levar uma torta de limão. (ou: Não desta vez)"></textarea>
+      <p class="error" id="err-levar" role="alert"></p>
+      <div class="actions">
+        <button class="btn ghost" type="button" data-go="desejo">← Voltar</button>
+        <button class="btn" type="button" id="b-levar">Enviar respostas <span aria-hidden="true">✓</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELA 5: MURAL -->
+  <section class="screen" id="s-mural" aria-labelledby="t-mural">
+    <header class="mural-head">
+      <svg class="wreath small" data-size="120" data-mountain="1" data-tone="light" viewBox="0 0 120 120" aria-hidden="true"></svg>
+      <div>
+        <p class="eyebrow light">Mural da noite</p>
+        <h2 id="t-mural">O que cada uma gostaria de ganhar</h2>
+        <p class="lead light">Encontre quem você tirou e veja as preferências dela.</p>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <label for="busca" class="sr">Buscar amiga</label>
+      <input id="busca" class="input search" type="search" placeholder="Buscar pelo nome de quem você tirou…">
+      <button class="btn small" type="button" id="b-refresh">Atualizar</button>
+    </div>
+
+    <div id="mural" class="grid" aria-live="polite"></div>
+
+    <section class="menu card" aria-labelledby="t-menu">
+      <div class="menu-head">
+        <span class="badge" data-icon="fire" aria-hidden="true"></span>
+        <div>
+          <p class="eyebrow">Mesa compartilhada</p>
+          <h3 id="t-menu">Aperitivos &amp; sobremesas</h3>
+        </div>
+      </div>
+      <ul id="menu" class="menu-list"></ul>
+    </section>
+
+
+    <section class="menu card shops" aria-labelledby="t-lojas">
+      <div class="menu-head">
+        <span class="badge" data-icon="pack" aria-hidden="true"></span>
+        <div>
+          <p class="eyebrow">Onde comprar</p>
+          <h3 id="t-lojas">Sugestões de lojas online</h3>
+        </div>
+      </div>
+      <ul class="shop-list">
+        <li><a class="shop" href="https://www.decathlon.com.br/esportes/trekking" target="_blank" rel="noopener noreferrer"><span class="sn">Decathlon</span><span class="sd">Trekking, roupas, mochilas, lanternas e garrafas</span><span class="su">decathlon.com.br ↗</span></a></li>
+        <li><a class="shop" href="https://www.curtlo.com.br/" target="_blank" rel="noopener noreferrer"><span class="sn">Curtlo</span><span class="sd">Pochetes, meias, chapéus, organizadores de viagem</span><span class="su">curtlo.com.br ↗</span></a></li>
+        <li><a class="shop" href="https://www.conquistamontanhismo.com.br/" target="_blank" rel="noopener noreferrer"><span class="sn">Conquista Montanhismo</span><span class="sd">Equipamentos e vestuário de montanha</span><span class="su">conquistamontanhismo.com.br ↗</span></a></li>
+        <li><a class="shop" href="https://www.aventuraecia.com.br/" target="_blank" rel="noopener noreferrer"><span class="sn">Aventura & Cia</span><span class="sd">Camping, caminhada, almofadas e acessórios</span><span class="su">aventuraecia.com.br ↗</span></a></li>
+        <li><a class="shop" href="https://www.entretrilhas.com.br/camping-trekking.html" target="_blank" rel="noopener noreferrer"><span class="sn">Entre Trilhas</span><span class="sd">Acessórios para trilha e camping</span><span class="su">entretrilhas.com.br ↗</span></a></li>
+        <li><a class="shop" href="https://www.amazon.com.br/" target="_blank" rel="noopener noreferrer"><span class="sn">Amazon Brasil</span><span class="sd">Mosquetões, sacos estanque, chás, snacks e mimos</span><span class="su">amazon.com.br ↗</span></a></li>
+        <li><a class="shop" href="https://www.mercadolivre.com.br/" target="_blank" rel="noopener noreferrer"><span class="sn">Mercado Livre</span><span class="sd">Bandanas, adesivos, toalhas compactas e variedades</span><span class="su">mercadolivre.com.br ↗</span></a></li>
+        <li><a class="shop" href="https://www.sephora.com.br/" target="_blank" rel="noopener noreferrer"><span class="sn">Sephora</span><span class="sd">Produtos mini de beleza e aromaterapia</span><span class="su">sephora.com.br ↗</span></a></li>
+      </ul>
+    </section>
+
+    <div class="mural-actions">
+      <button class="btn ghost light" type="button" id="b-editar">Editar minhas respostas</button>
+      <button class="btn ghost light" type="button" data-go="nome">Responder com outro nome</button>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">Feito com carinho para uma noite de guirlandas, trilhas, risadas e presentes.</footer>
+<script src="./config.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
