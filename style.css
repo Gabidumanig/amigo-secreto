@@ -214,3 +214,4 @@ body::before{opacity:.45}
 .wreath.small{width:116px;height:116px}
 @media (max-width:560px){.wreath{width:168px;height:168px}.wreath.small{width:88px;height:88px}}
 .foot{padding-bottom:min(38vh,270px)}
+.friend p.about{font-size:15px;line-height:1.5;color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere;padding-left:12px;border-left:2px solid var(--gold-soft);font-style:italic;font-family:var(--display);font-size:1.08rem}
