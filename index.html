@@ -57,9 +57,9 @@
     <div class="card">
       <div class="steps" aria-label="Etapa 2 de 4"><i class="on"></i><i class="on"></i><i></i><i></i></div>
       <p class="eyebrow">Agora, os presentes</p>
-      <h2 id="t-opcoes">Escolha 3 sugestões de presente de até 100 reais que gostaria de ganhar</h2>
-      <p class="lead">Marque exatamente três itens que você adoraria ganhar.</p>
-      <div class="counter"><strong id="count">0</strong> de 3 escolhidas</div>
+      <h2 id="t-opcoes">Escolha sugestões de presente de até 100 reais que gostaria de ganhar</h2>
+      <p class="lead">Marque pelo menos 1 item que você adoraria ganhar. Você pode escolher quantas opções quiser.</p>
+      <div class="counter"><strong id="count">0</strong> opções selecionadas</div>
       <div id="opcoes" class="options" role="group" aria-labelledby="t-opcoes"></div>
       <p class="error" id="err-opcoes" role="alert"></p>
       <div class="actions">
@@ -92,8 +92,9 @@
       <div class="steps" aria-label="Etapa 4 de 4"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
       <p class="eyebrow">Para a mesa da noite</p>
       <h2 id="t-levar">Você gostaria de levar algum aperitivo ou sobremesa? Se sim, o que?</h2>
-      <label for="in-levar" class="sr">O que você vai levar</label>
-      <textarea id="in-levar" class="input area" rows="4" maxlength="400" placeholder="Ex.: Sim, vou levar uma torta de limão. (ou: Não desta vez)"></textarea>
+      <p class="lead">Resposta opcional. Se preferir, deixe em branco e clique em Enviar respostas.</p>
+      <label for="in-levar" class="sr">O que você vai levar (opcional)</label>
+      <textarea id="in-levar" class="input area" rows="4" maxlength="400" placeholder="Ex.: Vou levar uma torta de limão. (opcional)"></textarea>
       <p class="error" id="err-levar" role="alert"></p>
       <div class="actions">
         <button class="btn ghost" type="button" data-go="desejo">← Voltar</button>
@@ -162,6 +163,6 @@
 
 <footer class="foot">Feito com carinho para uma noite de guirlandas, trilhas, risadas e presentes.</footer>
 <script src="./config.js?v=3"></script>
-<script src="./app.js?v=5"></script>
+<script src="./app.js?v=6"></script>
 </body>
 </html>
